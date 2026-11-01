@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NetGuard-AI | Network Security Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+*{box-sizing:border-box} :root{--bg:#080d18;--panel:#101827;--panel2:#131e30;--line:#202d40;--muted:#8492a8;--text:#e8eef8;--blue:#48a8ff;--cyan:#36d8d2;--purple:#a78bfa;--red:#ff647c;--green:#45d6a0;--font:'Manrope',sans-serif}body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:13px}button,input,select{font:inherit}.app-shell{min-height:100vh}.sidebar{width:245px;position:fixed;inset:0 auto 0 0;background:#0b1220;border-right:1px solid #1b2739;padding:27px 17px 18px;display:flex;flex-direction:column;z-index:4}.brand{display:flex;align-items:center;gap:11px;padding:0 9px 42px}.brand strong{font-size:15px;letter-spacing:1.5px}.brand strong span{color:var(--blue)}.brand small{display:block;color:#6d7d95;font-size:8px;letter-spacing:1.4px;margin-top:4px}.brand-mark{width:30px;height:30px;border:1px solid #2f86c8;border-radius:9px;display:flex;align-items:center;justify-content:center;gap:2px;transform:rotate(0deg)}.brand-mark span{width:3px;background:var(--cyan);border-radius:5px}.brand-mark span:nth-child(1){height:9px}.brand-mark span:nth-child(2){height:17px}.brand-mark span:nth-child(3){height:12px}.workspace-label,.panel-kicker{font-size:9px;letter-spacing:1.7px;color:#72839c;font-weight:800}.workspace-label{padding:0 12px 12px}.sidebar nav{display:grid;gap:6px}.nav-link{color:#8998ad;text-decoration:none;padding:12px;border-radius:8px;display:flex;align-items:center;gap:12px;font-weight:600}.nav-link.active{background:linear-gradient(90deg,#15365a,#14263d);color:#e7f4ff;box-shadow:inset 2px 0 var(--blue)}.nav-icon{font-size:17px;width:17px;text-align:center;color:#8da6c4}.nav-count{font-style:normal;font-size:8px;letter-spacing:1px;margin-left:auto;color:var(--cyan)}.alert-count{background:#462536;color:#ff8394;padding:3px 6px;border-radius:5px}.sidebar-bottom{margin-top:auto}.sensor-card{border:1px solid #22344a;background:#101c2c;border-radius:10px;padding:13px;margin-bottom:18px}.sensor-top{font-size:9px;letter-spacing:1.1px;color:#91a4bd}.pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #45d6a022;margin-right:7px}.sensor-card strong{display:block;margin:10px 0 4px;font-size:11px}.sensor-card small,.profile small{color:#71829a;font-size:10px}.profile{border-top:1px solid #202b3c;padding:17px 4px 0;display:flex;align-items:center;gap:10px}.avatar{width:32px;height:32px;border-radius:9px;background:#1b4164;color:#8ed1ff;display:grid;place-items:center;font-size:10px;font-weight:800}.profile strong{font-size:10px;display:block}.profile small{display:block;margin-top:3px}.dots{margin-left:auto;color:#71829a}.main-content{margin-left:245px;padding:0 34px 22px;max-width:1800px}.topbar{height:70px;border-bottom:1px solid #1b2739;display:flex;align-items:center;justify-content:space-between}.breadcrumb{color:#7889a1;font-size:11px}.breadcrumb span{padding:0 9px;color:#3d4b60}.breadcrumb b{color:#dce7f5}.top-actions{display:flex;align-items:center;gap:15px}.live-pill,.live-mini{color:#71dcb8;font-size:9px;letter-spacing:1px;font-weight:800}.live-pill{border:1px solid #23513f;border-radius:30px;padding:7px 11px;background:#10241f}.icon-button{border:1px solid var(--line);background:var(--panel);color:#9fb1c8;border-radius:7px;width:30px;height:30px;font-size:19px;cursor:pointer}.top-date{font-family:'DM Mono',monospace;color:#77869c;font-size:10px}.page-heading{display:flex;align-items:flex-end;justify-content:space-between;padding:31px 0 23px}.eyebrow{font-size:9px;letter-spacing:1.8px;color:#8ca0bb;font-weight:800}.eyebrow span{color:var(--cyan);padding:0 5px}h1{font-size:28px;letter-spacing:-1px;margin:8px 0 5px;font-weight:800}.heading-period{color:var(--blue)}.page-heading p,.panel-header p{color:#8190a5;font-size:11px;margin:0}.heading-actions{display:flex;gap:9px}.button{border:1px solid transparent;border-radius:7px;padding:10px 14px;font-size:10px;font-weight:800;cursor:pointer;transition:.2s}.button:hover{transform:translateY(-1px);filter:brightness(1.12)}.button-primary{background:linear-gradient(110deg,#237ed1,#5265dc);color:white;box-shadow:0 5px 18px #2869ba2b}.button-ghost{background:#121d2d;border-color:#2a3a50;color:#b8c6d8}.button-primary span{margin-right:5px}.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:15px}.kpi-card,.panel{background:linear-gradient(145deg,#111b2b,#0f1826);border:1px solid #202d40;border-radius:11px}.kpi-card{padding:16px 17px 13px;min-height:120px}.kpi-top{display:flex;justify-content:space-between;color:#8494aa;font-size:9px;letter-spacing:1.2px;font-weight:800}.kpi-symbol{font-size:16px;color:#639ed1}.kpi-value{font-size:27px;font-weight:800;letter-spacing:-1px;margin:10px 0 7px}.value-unit{font-size:15px;color:#a9b9ce}.kpi-foot{font-size:9px;color:#8190a5;display:flex;align-items:center;gap:5px}.positive{color:var(--green)}.negative{color:#ff8293}.foot-right{margin-left:auto;font-family:'DM Mono';font-size:8px;color:#71839b;letter-spacing:1px}.sparkline{margin-left:auto;color:#52bcae;letter-spacing:2px}.status-line{display:flex;align-items:center;gap:9px;margin:12px 0 13px}.status-line strong{font-size:17px}.status-dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px #45d6a0}.content-grid{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,.85fr);gap:14px}.panel{padding:18px}.panel-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.panel-header h2,.drawer-head h2{font-size:15px;margin:5px 0 4px;letter-spacing:-.3px}.panel-header p{font-size:10px}.panel-tools{display:flex;align-items:center;gap:12px}.live-mini{font-size:8px}.live-mini i{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:5px}.more-button{background:transparent;border:0;color:#8ca4c0;font-size:10px;cursor:pointer}.table-controls{display:flex;gap:8px;margin:17px 0 10px}.search-box{display:flex;align-items:center;gap:8px;background:#0b1421;border:1px solid #26354a;border-radius:6px;padding:0 10px;flex:1}.search-box span{font-size:18px;color:#8092aa}.search-box input{background:transparent;border:0;outline:0;color:var(--text);width:100%;padding:9px 0;font-size:10px}.table-controls select,.feature-form select{background:#0b1421;border:1px solid #26354a;color:#b5c5d8;border-radius:6px;padding:8px;font-size:10px;outline:0}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;color:#6f819a;font-size:8px;letter-spacing:1px;padding:10px 9px;border-bottom:1px solid #263247}td{padding:11px 9px;border-bottom:1px solid #1d2a3d;color:#afbdd0;font-family:'DM Mono',monospace;font-size:9px}tbody tr{cursor:pointer;transition:.15s}tbody tr:hover{background:#16263a}.classification{font-family:var(--font);font-size:8px;font-weight:800;padding:5px 8px;border-radius:5px;display:inline-block}.classification.normal{background:#12352d;color:#63ddb0}.classification.attack{background:#40202c;color:#ff8194}.table-footer{display:flex;justify-content:space-between;color:#71839a;font-size:9px;padding-top:12px}.table-footer b{color:var(--blue)}.compact-header{align-items:flex-start}.count-badge{font-size:9px;color:#ff91a0;background:#482633;border-radius:5px;padding:3px 6px;vertical-align:2px;margin-left:4px}.alert-list{margin-top:14px}.alert-item{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid #202d40}.alert-icon{flex:0 0 25px;height:25px;border-radius:7px;display:grid;place-items:center;font-weight:800}.alert-icon.high{background:#3b202b;color:#ff8095}.alert-icon.medium{background:#3d3421;color:#f5c76e}.alert-copy{min-width:0;flex:1}.alert-copy strong{font-size:10px;display:block;margin:1px 0 4px}.alert-copy p{margin:0 0 6px;color:#8493a8;font-size:9px;line-height:1.4}.alert-copy small{color:#74859b;font-size:8px;letter-spacing:.5px}.alert-arrow{color:#72869f;font-size:18px}.alert-footer{font-size:9px;color:#8493a8;padding-top:13px}.red-pulse{background:var(--red);box-shadow:0 0 0 4px #ff647c22}.analytics-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:14px;margin-top:14px}.chart-legend{display:flex;gap:12px;color:#8999af;font-size:9px;padding-top:6px}.chart-legend i,.distribution-legend i{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:5px}.legend-normal{background:#39cba4}.legend-threat{background:#ff718b}.legend-unknown{background:#66758d}.chart-area{height:150px;margin-top:13px;position:relative}.chart-area canvas{width:100%;height:100%}.chart-xlabels{display:flex;justify-content:space-between;color:#708198;font-size:8px;margin-top:5px}.distribution-content{display:flex;align-items:center;justify-content:space-around;padding:20px 0 12px;gap:15px}.donut-wrap{width:145px;height:145px;position:relative;flex:0 0 145px}.donut{width:100%;height:100%;border-radius:50%;background:conic-gradient(#39cba4 0 82%,#ff718b 82% 94%,#66758d 94% 100%);display:grid;place-items:center}.donut:before{content:"";width:105px;height:105px;border-radius:50%;background:#111b2b;position:absolute}.donut-center{position:relative;text-align:center}.donut-center strong{font-size:22px;display:block}.donut-center small{font-size:8px;letter-spacing:1.4px;color:#7d8da4}.distribution-legend{display:grid;gap:13px;min-width:130px}.distribution-legend div{display:grid;grid-template-columns:10px 1fr auto;align-items:center;gap:5px;color:#94a3b8;font-size:9px}.distribution-legend b{color:#e0e9f5;font-family:'DM Mono';font-size:10px}.distribution-foot{border-top:1px solid #243146;padding-top:11px;display:flex;justify-content:space-between;color:#77889e;font-size:8px}.distribution-foot b{color:#c4d5e9}.simulator-panel{margin-top:14px}.model-chip{font-size:8px;letter-spacing:1px;color:#b9a6ff;border:1px solid #4c3c79;background:#211c39;padding:7px 10px;border-radius:6px}.model-chip span{color:#c6b7ff;margin-right:4px}.simulator-layout{display:grid;grid-template-columns:1.3fr .8fr;gap:20px;margin-top:18px}.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.feature-form label,.config-modal label{display:grid;gap:6px;color:#91a2b8;font-size:9px;font-weight:700}.feature-form input,.feature-form select,.config-modal input{width:100%;background:#0a1421;border:1px solid #2a394d;border-radius:6px;padding:10px;color:#dce8f7;outline:0;font-family:'DM Mono';font-size:10px}.feature-form input:focus,.feature-form select:focus,.config-modal input:focus{border-color:#438ed1}.sim-actions{display:flex;gap:8px;margin-top:14px}.api-note{display:flex;align-items:center;gap:6px;margin-top:14px;color:#778aa3;font-size:9px}.api-note b{color:#b9c9dc}.api-dot{width:6px;height:6px;background:#e9b85b;border-radius:50%}.api-spacer{flex:1}.api-note button{border:0;background:none;color:#70baff;font-size:9px;cursor:pointer}.prediction-result{min-height:190px;background:radial-gradient(circle at 50% 0%,#1b2b47,#0b1421 70%);border:1px solid #293951;border-radius:9px;display:grid;place-items:center;padding:18px;text-align:center}.result-placeholder .scan-orb{font-size:29px;color:#64b8ff;margin-bottom:8px;text-shadow:0 0 22px #359fff}.result-placeholder strong{display:block;font-size:11px}.result-placeholder p{max-width:230px;color:#8092a9;font-size:9px;line-height:1.6}.result-verdict{font-size:15px;font-weight:800;margin:5px 0}.result-verdict.safe{color:var(--green)}.result-verdict.danger{color:var(--red)}.confidence{font-size:29px;font-weight:800;margin:5px}.confidence-label{font-size:8px;letter-spacing:1px;color:#8495aa}.confidence-bar{width:190px;height:5px;background:#273449;border-radius:10px;margin:10px auto;overflow:hidden}.confidence-bar span{height:100%;display:block;background:linear-gradient(90deg,#39cba4,#5ba9ff);border-radius:10px}.result-meta{font-size:9px;color:#92a4ba;margin-top:7px}.footer{display:flex;justify-content:space-between;color:#64758c;font-size:8px;letter-spacing:1px;padding:19px 2px 0}.footer b{color:#94a5bb}.footer i{color:var(--green);font-style:normal}.drawer-backdrop,.modal-backdrop{position:fixed;inset:0;background:#02060dbb;z-index:10;opacity:0;pointer-events:none;transition:.2s}.drawer-backdrop.open,.modal-backdrop.open{opacity:1;pointer-events:auto}.detail-drawer{position:fixed;right:-420px;top:0;height:100vh;width:390px;max-width:92vw;background:#101a29;border-left:1px solid #2b3a50;z-index:11;padding:24px;transition:.25s;overflow:auto}.detail-drawer.open{right:0}.drawer-head{display:flex;justify-content:space-between;align-items:flex-start}.close-drawer{background:#1b293c;border:1px solid #2a3b51;color:#c3d0e0;border-radius:6px;width:29px;height:29px;font-size:19px;cursor:pointer}.detail-block{border-bottom:1px solid #263449;padding:16px 0}.detail-block h3{font-size:10px;color:#a8bad0;margin:0 0 12px}.detail-row{display:flex;justify-content:space-between;padding:7px 0;color:#8092a9;font-size:9px}.detail-row b{color:#d7e3f1;font-family:'DM Mono';font-weight:500}.modal-backdrop{display:grid;place-items:center;padding:18px}.config-modal{width:440px;max-width:100%;background:#111c2c;border:1px solid #314158;border-radius:12px;padding:22px;box-shadow:0 20px 80px #0008}.config-modal>p{color:#8b9cb2;font-size:10px;line-height:1.7;margin:14px 0}.config-modal label{margin:12px 0}.config-modal code{color:#91caff}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:17px}.config-help{color:#73859d;font-size:8px;display:block;margin-top:13px}.toast{position:fixed;bottom:22px;right:25px;background:#18354a;border:1px solid #32658a;color:#d9efff;padding:11px 16px;border-radius:7px;font-size:10px;z-index:20;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}@media(max-width:1150px){.sidebar{width:205px}.main-content{margin-left:205px;padding:0 22px 20px}.content-grid{grid-template-columns:1fr}.alerts-panel{min-height:0}.alert-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.alert-item{border-bottom:0}.analytics-grid{grid-template-columns:1fr 1fr}}@media(max-width:850px){.sidebar{width:62px;padding:20px 8px}.brand{padding:0 8px 35px}.brand>div:last-child,.workspace-label,.nav-link:not(.active),.nav-link.active{font-size:0}.brand-mark{flex:0 0 30px}.sidebar nav{gap:9px}.nav-link{justify-content:center;padding:12px 0;font-size:0}.nav-icon{font-size:18px}.nav-count,.sidebar-bottom{display:none}.main-content{margin-left:62px;padding:0 15px}.page-heading{align-items:flex-start;gap:15px;flex-direction:column}.kpi-grid{grid-template-columns:repeat(2,1fr)}.analytics-grid{grid-template-columns:1fr}.alert-list{grid-template-columns:1fr}.simulator-layout{grid-template-columns:1fr}}@media(max-width:520px){.topbar{height:58px}.top-date{display:none}.live-pill{font-size:7px}.main-content{padding:0 10px}.page-heading{padding-top:23px}.page-heading h1{font-size:24px}.heading-actions{width:100%}.heading-actions .button{flex:1}.kpi-grid{gap:8px}.kpi-card{padding:12px;min-height:112px}.kpi-value{font-size:23px}.panel{padding:13px}.panel-header{flex-direction:column}.panel-tools{width:100%;justify-content:space-between}.form-grid{grid-template-columns:repeat(2,1fr)}.sim-actions{flex-wrap:wrap}.sim-actions .button{flex:1}.table-footer{gap:10px;line-height:1.5}.distribution-content{justify-content:flex-start}.footer{font-size:7px;gap:12px;line-height:1.5}}
+
+
+/* NetGuard-AI: clean enterprise dashboard theme */
+:root{
+  --bg:#f4f6f9; --panel:#ffffff; --panel2:#f8fafc; --line:#e3e8ef;
+  --muted:#697586; --text:#202b3c; --blue:#3569a8; --cyan:#3569a8;
+  --purple:#3569a8; --red:#68778a; --green:#3569a8;
+  --font:Arial, Helvetica, sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;font-size:13px}
+.sidebar{background:#fff;border-right:1px solid #e1e6ed}
+.brand{padding-bottom:38px}
+.brand strong{font-size:14px;letter-spacing:.7px;color:#243247}
+.brand strong span{color:#3569a8}
+.brand small{color:#7b8796;letter-spacing:1px}
+.brand-mark{border:1px solid #9aacc2;border-radius:6px}
+.brand-mark span{background:#3569a8}
+.workspace-label,.panel-kicker{color:#7b8796;letter-spacing:1.15px}
+.nav-link{color:#566273;border-radius:6px}
+.nav-link.active{background:#edf3fa;color:#244d7b;box-shadow:inset 3px 0 #3569a8}
+.nav-icon{color:#617b9b}
+.nav-count{color:#3569a8}
+.alert-count{background:#edf1f6;color:#52647a}
+.sensor-card{border:1px solid #e3e8ef;background:#f8fafc;border-radius:7px}
+.sensor-top{color:#667487}
+.sensor-card strong{color:#283548}
+.pulse,.status-dot{background:#4d83bd;box-shadow:none}
+.profile{border-top:1px solid #e5e9ef}
+.avatar{background:#eaf0f7;color:#315d8c;border-radius:6px}
+.topbar{border-bottom:1px solid #e1e6ed}
+.breadcrumb{color:#7b8796}.breadcrumb b{color:#334155}
+.live-pill{color:#3569a8;border:1px solid #d6e1ee;background:#f3f7fb;border-radius:5px}
+.icon-button{background:#fff;border-color:#dce3eb;color:#536477;border-radius:5px}
+.top-date{color:#738094}
+.eyebrow{color:#748196;letter-spacing:1.2px}
+.eyebrow span,.heading-period{color:#3569a8}
+h1{font-size:27px;letter-spacing:-.7px;color:#1f2937}
+.page-heading p,.panel-header p{color:#6b7788}
+.button{border-radius:5px;box-shadow:none;transition:background .15s,border-color .15s}
+.button-primary{background:#3569a8;color:#fff;box-shadow:none}
+.button-primary:hover{background:#2c588f}
+.button-ghost{background:#fff;border-color:#d8e0e9;color:#46566a}
+.kpi-card,.panel{background:#fff;border:1px solid #e1e6ed;border-radius:7px;box-shadow:0 1px 2px rgba(20,35,55,.025)}
+.kpi-card{padding:16px 17px 13px}
+.kpi-top{color:#6d7989;letter-spacing:.9px}
+.kpi-symbol{color:#6c86a5}
+.kpi-value{color:#243247}
+.kpi-foot{color:#718093}
+.positive,.negative{color:#526f91}
+.status-line strong{font-size:16px;color:#2d3b4f}
+.foot-right{color:#8490a0}
+.sparkline{color:#6f89a8}
+.panel-header h2,.drawer-head h2{color:#263447}
+.panel-tools{color:#6d7989}
+.live-mini{color:#3569a8}
+.live-mini i{background:#6b8db5}
+.more-button{color:#3569a8}
+.search-box{background:#fff;border-color:#dce3eb;border-radius:5px}
+.search-box input{color:#273548}
+.table-controls select,.feature-form select{background:#fff;border-color:#dce3eb;color:#344256;border-radius:5px}
+th{color:#748094;border-bottom:1px solid #e4e9ef}
+td{color:#526174;border-bottom:1px solid #edf0f4}
+tbody tr:hover{background:#f5f8fb}
+.classification{border:1px solid #dce4ed;background:#f4f7fa;color:#526b89;border-radius:4px}
+.classification.normal,.classification.attack{background:#f4f7fa;color:#526b89}
+.table-footer{color:#7a8797}
+.table-footer b{color:#3569a8}
+.count-badge{background:#edf1f6;color:#52647a;border-radius:4px}
+.alert-item{border-bottom:1px solid #edf0f4}
+.alert-icon,.alert-icon.high,.alert-icon.medium{background:#f0f3f7;color:#526b89;border-radius:5px}
+.alert-copy strong{color:#334155}
+.alert-copy p,.alert-copy small{color:#758195}
+.alert-footer{color:#748094}
+.red-pulse{background:#6f89a8;box-shadow:none}
+.chart-legend{color:#718093}
+.legend-normal,.legend-threat,.legend-unknown{background:#7891af}
+.chart-area{background:transparent}
+.donut{background:conic-gradient(#3569a8 0 82%,#9aa9bb 82% 94%,#dce2e9 94% 100%)}
+.donut:before{background:#fff}
+.donut-center strong{color:#2b394c}
+.donut-center small{color:#7b8796}
+.distribution-legend div{color:#657286}
+.distribution-legend b{color:#344256}
+.distribution-foot{border-top:1px solid #e5e9ef;color:#7b8796}
+.distribution-foot b{color:#46566a}
+.model-chip{color:#45658c;border:1px solid #dbe4ee;background:#f4f7fb;border-radius:5px}
+.model-chip span{color:#45658c}
+.feature-form label,.config-modal label{color:#657286}
+.feature-form input,.feature-form select,.config-modal input{background:#fff;border:1px solid #dce3eb;color:#2e3c50;border-radius:5px;font-family:Arial,Helvetica,sans-serif}
+.feature-form input:focus,.feature-form select:focus,.config-modal input:focus{border-color:#7c9abb}
+.api-note{color:#748094}
+.api-note b{color:#46566a}
+.api-dot{background:#7891af}
+.api-note button{color:#3569a8}
+.prediction-result{background:#f8fafc;border:1px solid #e1e6ed;border-radius:6px}
+.result-placeholder .scan-orb{color:#6b86a5;text-shadow:none}
+.result-placeholder strong{color:#344256}
+.result-placeholder p{color:#758195}
+.result-verdict.safe,.result-verdict.danger{color:#42658e}
+.confidence{color:#2d4058}
+.confidence-label{color:#788598}
+.confidence-bar{background:#e2e7ee}
+.confidence-bar span{background:#557da9}
+.result-meta{color:#788598}
+.footer{color:#7b8796}
+.footer b{color:#526174}
+.footer i{color:#557da9}
+.detail-drawer{background:#fff;border-left:1px solid #e1e6ed}
+.close-drawer{background:#f4f6f9;border:1px solid #dce3eb;color:#536477;border-radius:5px}
+.detail-block{border-bottom:1px solid #e6ebf0}
+.detail-block h3{color:#617086}
+.detail-row{color:#748094}
+.detail-row b{color:#344256}
+.config-modal{background:#fff;border:1px solid #dce3eb;border-radius:8px;box-shadow:0 16px 50px rgba(24,39,60,.15)}
+.config-modal>p{color:#6d7989}
+.config-modal code{color:#3569a8}
+.config-help{color:#7b8796}
+.toast{background:#fff;border:1px solid #d6e0eb;color:#334155;box-shadow:0 4px 18px rgba(20,35,55,.12)}
+@media(max-width:850px){.sidebar{background:#fff}}
+
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        <div><strong>NETGUARD<span>-AI</span></strong><small>NETWORK DEFENSE SYSTEM</small></div>
+      </div>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav>
+        <a class="nav-link active" href="#overview"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-link" href="#traffic"><span class="nav-icon">⌁</span> Traffic monitor <i class="nav-count">LIVE</i></a>
+        <a class="nav-link" href="#analytics"><span class="nav-icon">◫</span> Analytics</a>
+        <a class="nav-link" href="#simulator"><span class="nav-icon">⌘</span> AI simulator</a>
+        <a class="nav-link" href="#incidents"><span class="nav-icon">⚑</span> Incidents <i class="nav-count alert-count">3</i></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sensor-card">
+          <div class="sensor-top"><span class="pulse"></span> SENSOR STATUS</div>
+          <strong>All systems nominal</strong>
+          <small>Last heartbeat · just now</small>
+        </div>
+        <div class="profile">
+          <div class="avatar">NG</div>
+          <div><strong>NetGuard Admin</strong><small>Security analyst</small></div>
+          <span class="dots">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb">Security Operations <span>/</span> <b>Overview</b></div>
+        <div class="top-actions">
+          <div class="live-pill"><span class="pulse"></span> LIVE MONITORING</div>
+          <button class="icon-button" id="refreshBtn" title="Refresh dashboard">↻</button>
+          <div class="top-date" id="currentDate">--</div>
+        </div>
+      </header>
+
+      <section class="page-heading" id="overview">
+        <div>
+          <div class="eyebrow">COMMAND CENTER <span>•</span> NETWORK INTELLIGENCE</div>
+          <h1>Security overview<span class="heading-period">.</span></h1>
+          <p>Monitor network activity, detect anomalies, and investigate threats in real time.</p>
+        </div>
+        <div class="heading-actions">
+          <button class="button button-ghost" id="exportBtn">↓ Export report</button>
+          <button class="button button-primary" id="scanBtn"><span>✳</span> Run network scan</button>
+        </div>
+      </section>
+
+      <section class="kpi-grid">
+        <article class="kpi-card status-card">
+          <div class="kpi-top"><span> SYSTEM STATUS</span><span class="kpi-symbol">◉</span></div>
+          <div class="status-line"><span class="status-dot"></span><strong id="systemStatus">Operational</strong></div>
+          <div class="kpi-foot"><span class="positive">●</span> Protection active <span class="foot-right">AUTO</span></div>
+        </article>
+        <article class="kpi-card">
+          <div class="kpi-top"><span>PACKETS SCANNED</span><span class="kpi-symbol">⌁</span></div>
+          <div class="kpi-value" id="packetsScanned">128,430</div>
+          <div class="kpi-foot"><span class="positive">↗ 12.8%</span> <span>vs. previous hour</span><span class="sparkline">▁▃▂▅▄▆▅█</span></div>
+        </article>
+        <article class="kpi-card threat-kpi">
+          <div class="kpi-top"><span>ACTIVE THREATS</span><span class="kpi-symbol">⚑</span></div>
+          <div class="kpi-value" id="activeThreats">07</div>
+          <div class="kpi-foot"><span class="negative">● Needs attention</span><span class="foot-right">LAST 60 MIN</span></div>
+        </article>
+        <article class="kpi-card">
+          <div class="kpi-top"><span>MODEL ACCURACY</span><span class="kpi-symbol">◎</span></div>
+          <div class="kpi-value">98.4<span class="value-unit">%</span></div>
+          <div class="kpi-foot"><span class="positive">✓ XGBoost model</span><span class="foot-right">VALIDATED</span></div>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel traffic-panel" id="traffic">
+          <div class="panel-header">
+            <div><div class="panel-kicker">NETWORK ACTIVITY</div><h2>Live traffic monitor</h2><p>Latest network flows processed by the detection engine</p></div>
+            <div class="panel-tools"><span class="live-mini"><i></i> STREAMING</span><button class="more-button" id="clearFilterBtn">Clear filter</button></div>
+          </div>
+          <div class="table-controls">
+            <div class="search-box"><span>⌕</span><input id="trafficSearch" placeholder="Search IP, protocol or status..." /></div>
+            <select id="trafficFilter" aria-label="Filter traffic"><option value="all">All traffic</option><option value="normal">Normal only</option><option value="attack">Threats only</option></select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>TIMESTAMP</th><th>SOURCE IP</th><th>DESTINATION IP</th><th>PROTOCOL</th><th>BYTE RATIO</th><th>CLASSIFICATION</th></tr></thead>
+              <tbody id="trafficBody"></tbody>
+            </table>
+          </div>
+          <div class="table-footer"><span id="rowCount">Showing latest network flows</span><span>Click a row to inspect packet features <b>↗</b></span></div>
+        </article>
+
+        <article class="panel alerts-panel" id="incidents">
+          <div class="panel-header compact-header">
+            <div><div class="panel-kicker">THREAT INTELLIGENCE</div><h2>Incident alerts <span class="count-badge" id="alertBadge">3</span></h2><p>Recent security events requiring review</p></div>
+            <button class="more-button" id="viewAllAlerts">View all</button>
+          </div>
+          <div class="alert-list" id="alertList">
+            <div class="alert-item"><div class="alert-icon high">!</div><div class="alert-copy"><strong>Port scan detected</strong><p>Multiple ports probed from 185.22.14.8</p><small>HIGH · 2 min ago</small></div><span class="alert-arrow">›</span></div>
+            <div class="alert-item"><div class="alert-icon medium">⌁</div><div class="alert-copy"><strong>Unusual outbound traffic</strong><p>Abnormal byte ratio on TCP flow</p><small>MEDIUM · 8 min ago</small></div><span class="alert-arrow">›</span></div>
+            <div class="alert-item"><div class="alert-icon high">!</div><div class="alert-copy"><strong>Possible brute-force</strong><p>Repeated authentication attempts</p><small>HIGH · 14 min ago</small></div><span class="alert-arrow">›</span></div>
+          </div>
+          <div class="alert-footer"><span class="pulse red-pulse"></span> Threat intelligence is active</div>
+        </article>
+      </section>
+
+      <section class="analytics-grid" id="analytics">
+        <article class="panel chart-panel">
+          <div class="panel-header">
+            <div><div class="panel-kicker">TRAFFIC ANALYTICS</div><h2>Traffic volume over time</h2><p>Network flow activity · last 60 minutes</p></div>
+            <div class="chart-legend"><span><i class="legend-normal"></i> Normal</span><span><i class="legend-threat"></i> Anomalies</span></div>
+          </div>
+          <div class="chart-area"><canvas id="trafficChart"></canvas></div>
+          <div class="chart-xlabels"><span>60m ago</span><span>45m</span><span>30m</span><span>15m</span><span>Now</span></div>
+        </article>
+        <article class="panel distribution-panel">
+          <div class="panel-header">
+            <div><div class="panel-kicker">MODEL CLASSIFICATION</div><h2>Traffic distribution</h2><p>Predicted network flow categories</p></div>
+          </div>
+          <div class="distribution-content">
+            <div class="donut-wrap"><div class="donut" id="donutChart"><div class="donut-center"><strong>100%</strong><small>TRAFFIC</small></div></div></div>
+            <div class="distribution-legend">
+              <div><i class="legend-normal"></i><span>Normal traffic</span><b id="normalPct">82%</b></div>
+              <div><i class="legend-threat"></i><span>Malicious</span><b id="maliciousPct">12%</b></div>
+              <div><i class="legend-unknown"></i><span>Unclassified</span><b>6%</b></div>
+            </div>
+          </div>
+          <div class="distribution-foot"><span>Model: <b>XGBoost</b></span><span>Updated just now</span></div>
+        </article>
+      </section>
+
+      <section class="panel simulator-panel" id="simulator">
+        <div class="panel-header">
+          <div><div class="panel-kicker">INTERACTIVE MODEL TESTING</div><h2>AI prediction console</h2><p>Submit network-flow features to the XGBoost classification model</p></div>
+          <div class="model-chip"><span>✳</span> XGBOOST ENGINE</div>
+        </div>
+        <div class="simulator-layout">
+          <div class="feature-form">
+            <div class="form-grid">
+              <label>Source port<input id="srcPort" type="number" value="49152" min="0" max="65535"></label>
+              <label>Destination port<input id="dstPort" type="number" value="443" min="0" max="65535"></label>
+              <label>Protocol<select id="protocol"><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="ICMP">ICMP</option></select></label>
+              <label>Packet count<input id="packetCount" type="number" value="24" min="0"></label>
+              <label>Bytes sent<input id="bytesSent" type="number" value="4200" min="0"></label>
+              <label>Bytes received<input id="bytesReceived" type="number" value="8900" min="0"></label>
+            </div>
+            <div class="sim-actions"><button class="button button-ghost" id="sampleBtn">↻ Load sample test row</button><button class="button button-primary" id="analyzeBtn">✳ Run AI analysis</button></div>
+            <div class="api-note"><span class="api-dot"></span> API mode: <b id="apiMode">Demo simulation</b><span class="api-spacer"></span><button id="apiConfigBtn">Configure endpoint</button></div>
+          </div>
+          <div class="prediction-result" id="predictionResult">
+            <div class="result-placeholder"><div class="scan-orb">◎</div><strong>Awaiting network flow</strong><p>Run an analysis to see the model's prediction and confidence score.</p></div>
+          </div>
+        </div>
+      </section>
+      <footer class="footer"><span>NETGUARD-AI <b>v1.0.0</b> · AI-POWERED NETWORK INTRUSION DETECTION</span><span>SECURE CONNECTION <i>●</i></span></footer>
+    </main>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="detail-drawer" id="detailDrawer">
+    <div class="drawer-head"><div><div class="panel-kicker">FLOW INSPECTION</div><h2>Packet details</h2></div><button class="close-drawer" id="closeDrawer">×</button></div>
+    <div id="drawerContent"></div>
+  </aside>
+
+  <div class="modal-backdrop" id="configModal">
+    <div class="config-modal">
+      <div class="drawer-head"><div><div class="panel-kicker">BACKEND CONNECTION</div><h2>API configuration</h2></div><button class="close-drawer" id="closeConfig">×</button></div>
+      <p>Enter the base URL for Member 3's backend. The dashboard will send prediction requests to <code>/api/predict</code>.</p>
+      <label>Backend base URL<input id="apiUrl" placeholder="http://localhost:5000" /></label>
+      <label>Prediction endpoint<input id="apiPath" value="/api/predict" /></label>
+      <div class="modal-actions"><button class="button button-ghost" id="demoModeBtn">Use demo mode</button><button class="button button-primary" id="saveApiBtn">Save connection</button></div>
+      <small class="config-help">Expected response example: {"prediction":"Malicious","confidence":0.98,"label":"DDoS"}</small>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script>
+const $ = (id) => document.getElementById(id);
+const state = { rows: [], alerts: [], apiUrl: "", apiPath: "/api/predict", demo: true };
+const sampleRows = [
+  {time:"20:54:12",src:"192.168.1.24",dst:"142.250.183.14",protocol:"TCP",ratio:"0.47",status:"Normal",bytes:8900,packets:24,srcPort:49152,dstPort:443,confidence:0.991,features:{flow_duration:1.24,packet_count:24,bytes_sent:4200,bytes_received:8900,byte_ratio:0.47}},
+  {time:"20:54:09",src:"185.22.14.8",dst:"192.168.1.10",protocol:"TCP",ratio:"8.92",status:"Attack",bytes:1200,packets:480,srcPort:52110,dstPort:22,confidence:0.987,features:{flow_duration:0.08,packet_count:480,bytes_sent:10700,bytes_received:1200,byte_ratio:8.92}},
+  {time:"20:53:58",src:"10.0.0.18",dst:"172.217.160.78",protocol:"UDP",ratio:"0.83",status:"Normal",bytes:5400,packets:18,srcPort:53001,dstPort:53,confidence:0.964,features:{flow_duration:0.72,packet_count:18,bytes_sent:4500,bytes_received:5400,byte_ratio:0.83}},
+  {time:"20:53:41",src:"45.91.22.7",dst:"192.168.1.15",protocol:"TCP",ratio:"12.40",status:"Attack",bytes:980,packets:316,srcPort:40221,dstPort:3389,confidence:0.996,features:{flow_duration:0.04,packet_count:316,bytes_sent:12150,bytes_received:980,byte_ratio:12.4}},
+  {time:"20:53:22",src:"192.168.1.31",dst:"151.101.1.69",protocol:"TCP",ratio:"0.62",status:"Normal",bytes:6700,packets:31,srcPort:49821,dstPort:443,confidence:0.982,features:{flow_duration:2.14,packet_count:31,bytes_sent:4150,bytes_received:6700,byte_ratio:0.62}},
+  {time:"20:52:59",src:"103.44.12.91",dst:"192.168.1.8",protocol:"ICMP",ratio:"5.71",status:"Attack",bytes:410,packets:190,srcPort:0,dstPort:0,confidence:0.973,features:{flow_duration:0.12,packet_count:190,bytes_sent:2340,bytes_received:410,byte_ratio:5.71}}
+];
+function seedData(){ state.rows = [...sampleRows]; renderRows(); }
+function renderRows(){
+  const q = $("trafficSearch").value.toLowerCase(), filter = $("trafficFilter").value;
+  const rows = state.rows.filter(r => (filter==="all" || (filter==="normal" ? r.status==="Normal" : r.status!=="Normal")) && [r.src,r.dst,r.protocol,r.status].join(" ").toLowerCase().includes(q));
+  $("trafficBody").innerHTML = rows.map((r,i)=>`<tr data-index="${state.rows.indexOf(r)}"><td>${r.time}</td><td>${r.src}</td><td>${r.dst}</td><td>${r.protocol}</td><td>${r.ratio}</td><td><span class="classification ${r.status==="Normal"?"normal":"attack"}">${r.status==="Normal"?"● NORMAL":"▲ ATTACK"}</span></td></tr>`).join("");
+  $("rowCount").textContent = `Showing ${rows.length} of ${state.rows.length} network flows`;
+  document.querySelectorAll("#trafficBody tr").forEach(tr=>tr.addEventListener("click",()=>openDetails(state.rows[Number(tr.dataset.index)])));
+}
+function openDetails(r){
+  $("drawerContent").innerHTML = `<div class="detail-block"><h3>CLASSIFICATION</h3><div class="detail-row"><span>Model verdict</span><b>${r.status}</b></div><div class="detail-row"><span>Confidence</span><b>${(r.confidence*100).toFixed(1)}%</b></div><div class="detail-row"><span>Timestamp</span><b>${r.time}</b></div></div><div class="detail-block"><h3>CONNECTION DETAILS</h3><div class="detail-row"><span>Source IP</span><b>${r.src}</b></div><div class="detail-row"><span>Destination IP</span><b>${r.dst}</b></div><div class="detail-row"><span>Protocol</span><b>${r.protocol}</b></div><div class="detail-row"><span>Source port</span><b>${r.srcPort}</b></div><div class="detail-row"><span>Destination port</span><b>${r.dstPort}</b></div></div><div class="detail-block"><h3>ENGINEERED / PACKET FEATURES</h3>${Object.entries(r.features||{}).map(([k,v])=>`<div class="detail-row"><span>${k}</span><b>${v}</b></div>`).join("")}</div>`;
+  $("detailDrawer").classList.add("open"); $("drawerBackdrop").classList.add("open");
+}
+function closeDetails(){ $("detailDrawer").classList.remove("open"); $("drawerBackdrop").classList.remove("open"); }
+function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600);}
+function drawChart(){
+  const canvas=$("trafficChart"), rect=canvas.getBoundingClientRect(), dpr=window.devicePixelRatio||1;
+  canvas.width=rect.width*dpr;canvas.height=rect.height*dpr;const c=canvas.getContext("2d");c.scale(dpr,dpr);
+  const w=rect.width,h=rect.height,pad=12;
+  c.strokeStyle="#263449";c.lineWidth=1;
+  for(let i=0;i<4;i++){let y=pad+i*(h-2*pad)/3;c.beginPath();c.moveTo(pad,y);c.lineTo(w-pad,y);c.stroke();}
+  const normal=[38,42,35,50,47,58,55,62,53,66,61,70,64,74,67,72,65,81,76,83,70,78,86,79];
+  const threats=[7,8,5,9,7,11,8,14,10,9,16,12,10,17,13,11,19,14,12,18,15,20,13,17];
+  function line(data,color,fill){c.beginPath();data.forEach((v,i)=>{let x=pad+i*(w-2*pad)/(data.length-1),y=h-pad-v*(h-2*pad)/100;if(i===0)c.moveTo(x,y);else c.lineTo(x,y)});if(fill){c.lineTo(w-pad,h-pad);c.lineTo(pad,h-pad);c.closePath();c.fillStyle=fill;c.fill()}c.strokeStyle=color;c.lineWidth=2;c.stroke();}
+  line(normal,"#39cba4","rgba(57,203,164,.08)");line(threats,"#ff718b",null);
+}
+function updateMetrics(){ $("packetsScanned").textContent=(128430+Math.floor(Math.random()*100)).toLocaleString("en-US"); $("activeThreats").textContent=String(state.rows.filter(r=>r.status!=="Normal").length+4).padStart(2,"0"); $("systemStatus").textContent=state.rows.some(r=>r.status!=="Normal")?"Threats detected":"Operational"; }
+function addAlert(title,desc,severity="high"){
+  const item={title,desc,severity,time:"just now"};state.alerts.unshift(item);
+  const icon=severity==="high"?"!":"⌁";
+  $("alertList").insertAdjacentHTML("afterbegin",`<div class="alert-item"><div class="alert-icon ${severity}">${icon}</div><div class="alert-copy"><strong>${title}</strong><p>${desc}</p><small>${severity.toUpperCase()} · JUST NOW</small></div><span class="alert-arrow">›</span></div>`);
+  $("alertBadge").textContent=3+state.alerts.length;
+}
+function getPayload(){
+  const sent=Number($("bytesSent").value),received=Number($("bytesReceived").value);
+  return {src_port:Number($("srcPort").value),dst_port:Number($("dstPort").value),protocol:$("protocol").value,packet_count:Number($("packetCount").value),bytes_sent:sent,bytes_received:received,byte_ratio:received===0?sent:sent/received};
+}
+function normalizeVerdict(data){
+  const raw=String(data.prediction??data.label??data.classification??data.result??"").toLowerCase();
+  const attack=/(attack|malicious|ddos|dos|infiltration|botnet|port.?scan|brute)/.test(raw) || data.is_malicious===true;
+  let confidence=Number(data.confidence??data.probability??data.score??0.95);
+  if(confidence>1) confidence/=100;
+  return {attack,confidence:Math.max(0,Math.min(1,confidence)),label:data.label??data.attack_type??(attack?"Suspicious activity":"Normal traffic"),raw:data};
+}
+async function analyze(){
+  const btn=$("analyzeBtn");btn.disabled=true;btn.textContent="Analyzing...";
+  const payload=getPayload();let result;
+  try{
+    if(!state.demo && state.apiUrl){
+      const response=await fetch(state.apiUrl.replace(/\/$/,"")+state.apiPath,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+      if(!response.ok)throw new Error(`API returned ${response.status}`);
+      result=normalizeVerdict(await response.json());
+    }else{
+      await new Promise(r=>setTimeout(r,650));
+      const suspicious=payload.packet_count>180 || payload.dst_port===22 || payload.dst_port===3389 || payload.byte_ratio>3.5;
+      result={attack:suspicious,confidence:suspicious?0.982:0.991,label:suspicious?"Anomalous network flow":"Normal traffic",raw:{}};
+    }
+    showPrediction(result);
+    if(result.attack){addAlert("AI flagged a malicious flow",`${payload.protocol} traffic to port ${payload.dst_port} · ${result.label}`,"high");}
+    toast("AI analysis completed successfully");
+  }catch(err){showError(`Could not reach backend: ${err.message}`);toast("Backend request failed");}
+  finally{btn.disabled=false;btn.textContent="✳ Run AI analysis";}
+}
+function showPrediction(r){
+  const pct=(r.confidence*100).toFixed(1);
+  $("predictionResult").innerHTML=`<div><div class="confidence-label">MODEL PREDICTION</div><div class="result-verdict ${r.attack?"danger":"safe"}">${r.attack?"▲ MALICIOUS ATTACK":"✓ SAFE TRAFFIC"}</div><div class="confidence">${pct}%</div><div class="confidence-label">CONFIDENCE SCORE</div><div class="confidence-bar"><span style="width:${pct}%"></span></div><div class="result-meta">${r.label} · ${state.demo?"DEMO MODEL":"BACKEND RESPONSE"}</div></div>`;
+}
+function showError(msg){$("predictionResult").innerHTML=`<div class="result-placeholder"><div class="scan-orb" style="color:#ff8293">!</div><strong>Analysis unavailable</strong><p>${msg}. Check your endpoint and backend server, or switch to demo mode.</p></div>`;}
+function sample(){ $("srcPort").value=52110;$("dstPort").value=22;$("protocol").value="TCP";$("packetCount").value=480;$("bytesSent").value=10700;$("bytesReceived").value=1200;toast("Suspicious sample row loaded");}
+function configure(){ $("apiUrl").value=state.apiUrl;$("apiPath").value=state.apiPath;$("configModal").classList.add("open");}
+function saveConfig(){state.apiUrl=$("apiUrl").value.trim();state.apiPath=$("apiPath").value.trim()||"/api/predict";state.demo=!state.apiUrl;$("apiMode").textContent=state.demo?"Demo simulation":state.apiUrl;$("configModal").classList.remove("open");toast(state.demo?"Demo mode enabled":"Backend endpoint configured");}
+function exportReport(){
+  const rows=[["timestamp","source_ip","destination_ip","protocol","byte_ratio","classification"],...state.rows.map(r=>[r.time,r.src,r.dst,r.protocol,r.ratio,r.status])];
+  const csv=rows.map(row=>row.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="netguard-ai-traffic-report.csv";a.click();URL.revokeObjectURL(a.href);toast("Traffic report exported");
+}
+function runScan(){state.rows.unshift({...sampleRows[Math.floor(Math.random()*sampleRows.length)],time:new Date().toLocaleTimeString("en-GB"),src:"192.168.1."+Math.floor(20+Math.random()*80)});renderRows();updateMetrics();toast("Network scan complete · latest flow added");}
+function init(){
+  seedData();drawChart();updateMetrics();
+  $("currentDate").textContent=new Date().toLocaleDateString("en-IN",{weekday:"short",day:"2-digit",month:"short",year:"numeric"});
+  $("trafficSearch").addEventListener("input",renderRows);$("trafficFilter").addEventListener("change",renderRows);
+  $("clearFilterBtn").onclick=()=>{$("trafficSearch").value="";$("trafficFilter").value="all";renderRows();};
+  $("closeDrawer").onclick=closeDetails;$("drawerBackdrop").onclick=closeDetails;
+  $("analyzeBtn").onclick=analyze;$("sampleBtn").onclick=sample;$("apiConfigBtn").onclick=configure;
+  $("closeConfig").onclick=()=>$("configModal").classList.remove("open");$("saveApiBtn").onclick=saveConfig;
+  $("demoModeBtn").onclick=()=>{state.demo=true;state.apiUrl="";$("apiMode").textContent="Demo simulation";$("configModal").classList.remove("open");toast("Demo mode enabled");};
+  $("exportBtn").onclick=exportReport;$("scanBtn").onclick=runScan;$("refreshBtn").onclick=()=>{updateMetrics();renderRows();toast("Dashboard refreshed");};
+  $("viewAllAlerts").onclick=()=>toast("Showing the latest incident alerts");
+  window.addEventListener("resize",drawChart);
+}
+document.addEventListener("DOMContentLoaded",init);
+
+</script>
+</body>
+</html>
